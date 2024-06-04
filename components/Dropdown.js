@@ -1,5 +1,6 @@
-import { useEffect, useState, useRef } from "react";
-import styles from "./Dropdown.module.css";
+import { useEffect, useState, useRef } from 'react';
+import styles from './Dropdown.module.css';
+import arrowImg from '@/public/arrow.svg';
 
 export default function Dropdown({
   className,
@@ -27,14 +28,14 @@ export default function Dropdown({
       }
     }
 
-    window.addEventListener("click", handleClickOutside);
+    window.addEventListener('click', handleClickOutside);
     return () => {
-      window.removeEventListener("click", handleClickOutside);
+      window.removeEventListener('click', handleClickOutside);
     };
   }, []);
 
   const classNames = `${styles.input} ${
-    isOpen ? styles.opened : ""
+    isOpen ? styles.opened : ''
   } ${className}`;
   const selectedOption = options.find((option) => option.value === value);
 
@@ -46,12 +47,18 @@ export default function Dropdown({
       ref={inputRef}
     >
       {selectedOption.label}
-      <span className={styles.arrow}>▴</span>
+      <img
+        className={styles.arrow}
+        src={arrowImg.src}
+        width={12}
+        height={9}
+        alt="▼"
+      />
       <div className={styles.options}>
         {options.map((option) => {
           const selected = value === option.value;
           const className = `${styles.option} ${
-            selected ? styles.selected : ""
+            selected ? styles.selected : ''
           }`;
           return (
             <div

@@ -1,12 +1,10 @@
-import { useEffect, useState } from "react";
-import { useRouter } from "next/router";
-import ProductList from "@/components/ProductList";
-import SearchForm from "@/components/SearchForm";
-import axios from "@/lib/axios";
-import styles from "@/styles/Search.module.css";
-import Header from "@/components/Header";
-import Container from "@/components/Container";
-import Head from "next/head";
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
+import Head from 'next/head';
+import ProductList from '@/components/ProductList';
+import SearchForm from '@/components/SearchForm';
+import axios from '@/lib/axios';
+import styles from '@/styles/Search.module.css';
 
 export default function Search() {
   const [products, setProducts] = useState([]);
@@ -23,8 +21,9 @@ export default function Search() {
     getProducts(q);
   }, [q]);
 
+
   return (
-    <div>
+    <>
       <Head>
         <title>{q} 검색 결과 - Codeitmall</title>
       </Head>
@@ -33,6 +32,6 @@ export default function Search() {
         <span className={styles.keyword}>{q}</span> 검색 결과
       </h2>
       <ProductList className={styles.productList} products={products} />
-    </div>
+    </>
   );
 }
